@@ -4,7 +4,11 @@
   :min-lein-version "2.0.0"
 
   :dependencies [[org.clojure/clojure "1.6.0"]
-                 [compojure "1.1.9"]]
+                 [compojure "1.1.9"]
+                 [http-kit "2.1.18"]
+                 [cheshire "5.3.1"]]
+
+  :source-paths ["src"]
 
   :plugins [[lein-ring "0.8.12"]]
   :ring {:handler gists-as-tricks.handler/app}

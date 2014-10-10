@@ -27,7 +27,7 @@
                          :throw-exceptions false} opts)
         {:keys [body status]} (http/request req-opts)]
     {:status status
-     :body (json/parse-string body)}))
+     :body (json/parse-string body true)}))
 
 (defn list-gists
   "List a user's gists.

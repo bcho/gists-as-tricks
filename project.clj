@@ -5,8 +5,8 @@
 
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [compojure "1.1.9"]
-                 [http-kit "2.1.18"]
-                 [cheshire "5.3.1"]]
+                 [cheshire "5.3.1"]
+                 [clj-http "1.0.0"]]
 
   :source-paths ["src"]
 
@@ -15,4 +15,5 @@
 
   :profiles
   {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
-                        [ring-mock "0.1.5"]]}})
+                        [ring-mock "0.1.5"]
+                        [clj-http-fake "0.7.8"]]}})

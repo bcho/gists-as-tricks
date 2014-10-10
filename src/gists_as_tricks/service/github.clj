@@ -1,6 +1,6 @@
 (ns gists-as-tricks.service.github
   "GitHub API service."
-  (:require [org.httpkit.client :as http]
+  (:require [clj-http.client :as http]
             [cheshire.core :as json]))
 
 
@@ -17,16 +17,16 @@
 
   Returns :status, :error and :body
   
-  Endpoint is string likes:
+  Path is string likes:
 
     /orgs/octokit/repos
   "
-  [endpoint method]
-  (let [req-opts {:method method
-                  :url (make-real-endpoint endpoint)}
-        {:keys [body status error]} @(http/request req-opts)]
+  [path method & [opts]]
+  (let [req-opts (merge {:method method
+                         :url (make-real-endpoint path)
+                         :throw-exceptions false} opts)
+        {:keys [body status]} (http/request req-opts)]
     {:status status
-     :error error
      :body (json/parse-string body)}))
 
 (defn list-gists
@@ -36,7 +36,7 @@
   "
   [username]
   (let [endpoint (str "/users/" username "/gists")
-        {:keys [body error]} (make-request endpoint :get)]
-    (if error
-      []
-      body)))
+        {:keys [body status]} (make-request endpoint :get)]
+    (if (= (quot status 100) 2)
+      body
+      [])))

@@ -4,6 +4,7 @@
   :min-lein-version "2.0.0"
 
   :dependencies [[org.clojure/clojure "1.6.0"]
+                 [ring/ring-jetty-adapter "1.3.1"]
                  [compojure "1.1.9"]
                  [cheshire "5.3.1"]
                  [clj-http "1.0.0"]
@@ -12,6 +13,8 @@
                  [hiccup "1.0.5"]]
 
   :source-paths ["src"]
+  :out [gists-as-tricks.server]
+  :main gists-as-tricks.server
 
   :plugins [[lein-ring "0.8.12"]]
   :ring {:handler gists-as-tricks.handler/app}

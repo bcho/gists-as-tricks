@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gists as Tricks</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css">
+    <style>
+        body { background: url(/bg.png); }
+        .gists-list { margin: 0 auto; }
+        .gist-file .line,
+        .gist-file .line-number { font-size: 1.1em; }
+        .gist-title {
+            margin-bottom: .1em;
+            font-family: Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+            color: #333;
+            font-size: 1.75em;
+            font-weight: normal;
+        }
+        .gist-date { color: #666; font-size: .55em; margin-top: 0; font-weight: normal; }
+    </style>
+</head>
+<body>
+    <div class="gists-list-wrapper pure-g">
+        <section class="gists-list pure-u-1-2 pure-u-lg-1-2 pure-u-md-1 pure-u-sm-1">
+        {{#gists}}
+            {{&.}}
+        {{/gists}}
+        </section>
+    </div>
+</body>
+</html>

@@ -7,6 +7,8 @@
                  [compojure "1.1.9"]
                  [cheshire "5.3.1"]
                  [clj-http "1.0.0"]
+                 [clj-time "0.8.0"]
+                 [de.ubercode.clostache/clostache "1.4.0"]
                  [hiccup "1.0.5"]]
 
   :source-paths ["src"]

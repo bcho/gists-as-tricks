@@ -1,4 +1,4 @@
-FROM bcho/gists-as-tricks
+FROM dockerfile/java
 MAINTAINER hbc "bcxxxxxx@gmail.com"
 
 RUN sudo apt-get update

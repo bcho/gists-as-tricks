@@ -10,7 +10,9 @@
                  [clj-http "1.0.0"]
                  [clj-time "0.8.0"]
                  [de.ubercode.clostache/clostache "1.4.0"]
-                 [hiccup "1.0.5"]]
+                 [hiccup "1.0.5"]
+                 [yesql "0.4.0"]
+                 [org.xerial/sqlite-jdbc "3.8.7"]]
 
   :source-paths ["src"]
   :out [gists-as-tricks.server]

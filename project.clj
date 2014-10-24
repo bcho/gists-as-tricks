@@ -4,6 +4,7 @@
   :min-lein-version "2.0.0"
 
   :dependencies [[org.clojure/clojure "1.6.0"]
+                 [org.clojure/tools.cli "0.3.1"]
                  [ring/ring-jetty-adapter "1.3.1"]
                  [compojure "1.1.9"]
                  [cheshire "5.3.1"]
@@ -15,8 +16,8 @@
                  [org.xerial/sqlite-jdbc "3.8.7"]]
 
   :source-paths ["src"]
-  :out [gists-as-tricks.server]
-  :main gists-as-tricks.server
+  :out [gists-as-tricks.main]
+  :main gists-as-tricks.main
 
   :plugins [[lein-ring "0.8.12"]]
   :ring {:handler gists-as-tricks.handler/app}

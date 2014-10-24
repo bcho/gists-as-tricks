@@ -13,6 +13,3 @@
   (let [db-config (database/get-db)
         create-table (fn [t] (t db-config))]
     (doall (map create-table tables))))
-
-
-(build)

@@ -46,7 +46,7 @@
 
 
 (defn parse
-  "Parse commandline input, return command & configs.
+  "Parse commandline input, return command & cli-configs.
   Exit on help or errors occurred."
   [args]
   (let [{:keys [options arguments errors summary]} (parse-opts args options)
@@ -60,4 +60,4 @@
       (not (some #(= command %) available-commands))
            (exit 1 (error-msg [(str "Unknown command: " command)])))
     
-    {:command command :configs configs}))
+    {:command command :cli-configs configs}))

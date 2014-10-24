@@ -5,6 +5,7 @@
 
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [org.clojure/tools.cli "0.3.1"]
+                 [org.clojure/tools.logging "0.3.1"]
                  [ring/ring-jetty-adapter "1.3.1"]
                  [compojure "1.1.9"]
                  [cheshire "5.3.1"]

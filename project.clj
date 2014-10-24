@@ -1,4 +1,4 @@
-(defproject gists-as-tricks "0.0.1-SNAPSHOT"
+(defproject gists-as-tricks "0.0.2-SNAPSHOT"
   :description "Gists as tricks!"
   :url "http://tricks.youknowmymind.com"
   :min-lein-version "2.0.0"

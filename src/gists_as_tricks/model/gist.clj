@@ -2,6 +2,7 @@
   "Gist model."
   (:require [gists-as-tricks.service.github :as github]
             [gists-as-tricks.service.database :as database]
+            [clojure.tools.logging :as log]
             [cheshire.core :as json]
             [yesql.core :refer [defqueries]]))
 
@@ -16,7 +17,7 @@
   [gist]
   (re-find #"[tT][rR][iI][cC][kK]" (:description gist)))
 
-(defn- get-by-user-from-database
+(defn- get-by-user-from-database-unsafe
   "Get user's trick gists from database."
   [user]
   (let [db-config (database/get-db)
@@ -25,7 +26,18 @@
       (json/parse-string (:content cached) true)
       nil)))
 
-(defn- write-gists-to-database
+; TODO wrap with macro.
+(defn- get-by-user-from-database
+  "Get user's trick gists from database.
+  If there is no connection specified, returns nil."
+  [& args]
+  (try
+    (apply get-by-user-from-database-unsafe args)
+    (catch Exception e (do
+                         (log/warn "Unable to get gists from db.")
+                         nil))))
+
+(defn- write-gists-to-database-unsafe
   "Write user's gists to database."
   [user gists]
   (let [cache-gists (json/generate-string gists)
@@ -34,6 +46,16 @@
     (if (> cache-count 0)
       (sql-set-user-cache! db-config cache-gists user)
       (sql-create-user-cache! db-config cache-gists user))))
+
+; TODO wrap with macro.
+(defn- write-gists-to-database
+  "Write user's gists to database."
+  [& args]
+  (try
+    (apply write-gists-to-database-unsafe args)
+    (catch Exception e (do
+                         (log/warn "Unable to write to db.")
+                         nil))))
 
 (defn- get-by-user-from-github
   "Get user's trick gists from github."
@@ -47,5 +69,9 @@
   [user]
   (let [gists (get-by-user-from-database user)]
     (if gists
-      gists
-      (get-by-user-from-github user))))
+      (do
+        (log/debug "Hitting from database.")
+        gists)
+      (do
+        (log/debug "Hitting from github api.")
+        (get-by-user-from-github user)))))

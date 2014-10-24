@@ -1,11 +1,18 @@
 (ns gists-as-tricks.service.database
-  "Database service."
-  (:require [clojure.java.io :as io]))
+  "Database service.")
 
 
-; TODO runtime config
+(def db-connection (atom {:subprotocol "sqlite"
+                          :subname ":memory:"}))
+
+
 (defn get-db
   "Get database connection settings."
   []
-  {:subprotocol "sqlite"
-   :subname (.getFile (io/resource "database/db.sqlite3"))})
+  @db-connection)
+
+
+(defn set-db!
+  "Set database connection settings."
+  [settings]
+  (reset! db-connection settings))

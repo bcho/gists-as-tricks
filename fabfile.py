@@ -52,4 +52,5 @@ def restart_container():
 def deploy():
     update_codebase()
     build_jar()
+    build_docker_image()
     restart_container()
